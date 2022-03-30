@@ -7,10 +7,12 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const REGISTER = _Paths.REGISTER;
   static const ADD_PEGAWAI = _Paths.ADD_PEGAWAI;
+  static const LOGIN = _Paths.LOGIN;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const REGISTER = '/register';
   static const ADD_PEGAWAI = '/add-pegawai';
+  static const LOGIN = '/login';
 }

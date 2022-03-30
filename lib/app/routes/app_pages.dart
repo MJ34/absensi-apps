@@ -4,6 +4,8 @@ import 'package:preferensi/app/modules/add_pegawai/bindings/add_pegawai_binding.
 import 'package:preferensi/app/modules/add_pegawai/views/add_pegawai_view.dart';
 import 'package:preferensi/app/modules/home/bindings/home_binding.dart';
 import 'package:preferensi/app/modules/home/views/home_view.dart';
+import 'package:preferensi/app/modules/login/bindings/login_binding.dart';
+import 'package:preferensi/app/modules/login/views/login_view.dart';
 import 'package:preferensi/app/modules/register/bindings/register_binding.dart';
 import 'package:preferensi/app/modules/register/views/register_view.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.ADD_PEGAWAI,
       page: () => AddPegawaiView(),
       binding: AddPegawaiBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }
