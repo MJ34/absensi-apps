@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -39,16 +40,18 @@ class LoginView extends GetView<LoginController> {
               height: 30,
             ),
             Obx(
-                () =>
-                    ElevatedButton(
-                onPressed: () async {
-                  if (controller.isLoading.isFalse) {
-                    await controller.login();
-                  }
-                },
-                child: Text(controller.isLoading.isFalse ? "Login" : "Loading...")),
+              () => ElevatedButton(
+                  onPressed: () async {
+                    if (controller.isLoading.isFalse) {
+                      await controller.login();
+                    }
+                  },
+                  child: Text(
+                      controller.isLoading.isFalse ? "Login" : "Loading...")),
             ),
-            TextButton(onPressed: () {}, child: Text("Lupa Password ?")),
+            TextButton(
+                onPressed: () => Get.toNamed(Routes.FORGET_PASSWORD),
+                child: Text("Lupa Password ?")),
           ],
         ));
   }
