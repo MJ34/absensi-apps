@@ -4,13 +4,15 @@ import 'package:get/get.dart';
 import 'package:preferensi/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
+  RxBool isLoading = false.obs;
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  void login() async {
+  Future<void> login() async {
     if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
+      isLoading.value = true;
       //eksekusi
       try {
         UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -18,6 +20,7 @@ class LoginController extends GetxController {
 
         if (userCredential.user != null) {
           if (userCredential.user!.emailVerified == true) {
+            isLoading.value = false;
             if (passC.text == "password") {
               Get.offAllNamed(Routes.NEW_PASSWORD);
             } else {
@@ -29,7 +32,10 @@ class LoginController extends GetxController {
               middleText: "Silahkan Verifikasi Email Anda",
               actions: [
                 OutlinedButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () {
+                    isLoading.value = false;
+                      Get.back();
+                  },
                   child: Text("Cancel"),
                 ),
                 ElevatedButton(
@@ -49,13 +55,16 @@ class LoginController extends GetxController {
             );
           }
         }
+        isLoading.value = false;
       } on FirebaseAuthException catch (e) {
+        isLoading.value = false;
         if (e.code == 'user-not-found') {
           Get.snackbar('Error', 'Email tidak terdaftar');
         } else if (e.code == 'wrong-password') {
           Get.snackbar('Error', 'Password salah');
         }
       } catch (e) {
+        isLoading.value = false;
         Get.snackbar('Error', 'Terjadi kesalahan');
       }
     } else {

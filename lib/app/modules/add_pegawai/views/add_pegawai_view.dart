@@ -48,11 +48,15 @@ class AddPegawaiView extends GetView<AddPegawaiController> {
             SizedBox(
               height: 30,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  controller.addPegawai();
-                },
-                child: Text("Simpan Data")),
+            Obx(() {
+              return ElevatedButton(
+                  onPressed: () async {
+                    if (controller.isLoading.isFalse) {
+                      await controller.addPegawai();
+                    }
+                  },
+                  child: Text(controller.isLoading.isFalse ? "Tambah Data" : "Loading..."));
+            }),
           ],
         ));
   }
