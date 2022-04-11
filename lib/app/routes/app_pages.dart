@@ -10,6 +10,8 @@ import 'package:preferensi/app/modules/login/bindings/login_binding.dart';
 import 'package:preferensi/app/modules/login/views/login_view.dart';
 import 'package:preferensi/app/modules/new_password/bindings/new_password_binding.dart';
 import 'package:preferensi/app/modules/new_password/views/new_password_view.dart';
+import 'package:preferensi/app/modules/profile/bindings/profile_binding.dart';
+import 'package:preferensi/app/modules/profile/views/profile_view.dart';
 import 'package:preferensi/app/modules/register/bindings/register_binding.dart';
 import 'package:preferensi/app/modules/register/views/register_view.dart';
 
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.FORGET_PASSWORD,
       page: () => ForgetPasswordView(),
       binding: ForgetPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }
