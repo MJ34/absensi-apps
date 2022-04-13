@@ -18,23 +18,6 @@ class HomeView extends GetView<HomeController> {
           IconButton(
                   onPressed: () => Get.toNamed(Routes.PROFILE),
                   icon: Icon(Icons.person)),
-         /* StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-            stream: controller.streamRole(),
-            builder: (context, snap) {
-              if (snap.connectionState == ConnectionState.waiting) {
-                return SizedBox();
-              }
-              String role = snap.data!.data()!["role"];
-              if (role == "admin") {
-                //role admin
-               return IconButton(
-                  onPressed: () => Get.toNamed(Routes.ADD_PEGAWAI),
-                  icon: Icon(Icons.person));
-              } else {
-                return SizedBox();
-              }
-            }
-          ),*/
         ],
       ),
       body: Center(
