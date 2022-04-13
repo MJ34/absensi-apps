@@ -14,6 +14,10 @@ import 'package:preferensi/app/modules/profile/bindings/profile_binding.dart';
 import 'package:preferensi/app/modules/profile/views/profile_view.dart';
 import 'package:preferensi/app/modules/register/bindings/register_binding.dart';
 import 'package:preferensi/app/modules/register/views/register_view.dart';
+import 'package:preferensi/app/modules/update_password/bindings/update_password_binding.dart';
+import 'package:preferensi/app/modules/update_password/views/update_password_view.dart';
+import 'package:preferensi/app/modules/update_profile/bindings/update_profile_binding.dart';
+import 'package:preferensi/app/modules/update_profile/views/update_profile_view.dart';
 
 part 'app_routes.dart';
 
@@ -57,6 +61,16 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_PROFILE,
+      page: () => UpdateProfileView(),
+      binding: UpdateProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_PASSWORD,
+      page: () => UpdatePasswordView(),
+      binding: UpdatePasswordBinding(),
     ),
   ];
 }
