@@ -18,7 +18,7 @@ class ProfileView extends GetView<ProfileController> {
           stream: controller.streamUser(),
           builder: (context, snap) {
             if (snap.connectionState == ConnectionState.waiting) {
-              Center(child: CircularProgressIndicator());
+              return Center(child: CircularProgressIndicator());
             }
             if (snap.hasData) {
               Map<String, dynamic> user = snap.data!.data()!;

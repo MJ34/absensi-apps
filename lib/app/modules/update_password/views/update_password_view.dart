@@ -9,14 +9,55 @@ class UpdatePasswordView extends GetView<UpdatePasswordController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('UpdatePasswordView'),
+        title: Text('Update Password'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'UpdatePasswordView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          TextField(
+            controller: controller.currC,
+            autocorrect: false,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: "Current Password",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 10),
+          TextField(
+            controller: controller.newC,
+            autocorrect: false,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: "New Password",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 10),
+          TextField(
+            controller: controller.konfC,
+            autocorrect: false,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: "Konfirmasi Password",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 10),
+          Obx(
+            () => ElevatedButton(
+              onPressed: () {
+                if (controller.isLoading.isFalse) {
+                  controller.updatePass();
+                }
+              },
+              child: Text((controller.isLoading.isFalse)
+                  ? "Ganti Password"
+                  : "Loading..."),
+            ),
+          ),
+        ],
       ),
     );
   }
