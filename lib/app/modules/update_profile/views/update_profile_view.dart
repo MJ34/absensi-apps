@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,6 +8,7 @@ import '../controllers/update_profile_controller.dart';
 
 class UpdateProfileView extends GetView<UpdateProfileController> {
   final Map<String, dynamic> user = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     controller.nipC.text = user["nip"];
@@ -50,6 +53,48 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
                 labelText: "Email",
                 border: OutlineInputBorder(),
               ),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GetBuilder<UpdateProfileController>(builder: (c) {
+                  if (c.image != null) {
+                    return ClipOval(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.file(
+                          File(c.image!.path),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else {
+                    if (user["profile"] != null) {
+                     return ClipOval(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.network(
+                          user["profile"],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                    }  else {
+                      return Text("no image");
+                    }
+                  }
+                },
+                ),
+                TextButton(
+                    onPressed: () {
+                      controller.pickImage();
+                    },
+                    child: Text("Choose"),
+                  ),
+              ],
             ),
             SizedBox(
               height: 30,

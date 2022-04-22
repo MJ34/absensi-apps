@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UpdateProfileController extends GetxController {
   RxBool isLoading = false.obs;
@@ -9,6 +10,21 @@ class UpdateProfileController extends GetxController {
   TextEditingController emailC = TextEditingController();
 
   FirebaseFirestore db = FirebaseFirestore.instance;
+
+  final ImagePicker picker = ImagePicker();
+  XFile? image;
+
+  void pickImage() async {
+        image = await picker.pickImage(source: ImageSource.gallery);
+        if (image != null) {
+          print(image!.name);
+          print(image!.name.split(".").last);
+          print(image!.path);
+        }  else {
+          print(image);
+        }
+        update();
+  }
 
   Future<void> updateProfile(String uid) async {
     if (nameC.text.isNotEmpty &&
